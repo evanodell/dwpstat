@@ -1,27 +1,35 @@
-#' Title
+#' Submit and receive table queries
+#'
+#' @param database
+#' @param measures
+#' @param row
+#' @param column
+#' @param wafer
 #'
 #' @return
 #' @export
 #'
 #' @examples
-#'
-#'
 
 
-dwp_table <- function() {
 
-  query <-paste0(dwp_baseurl, "rate_limit")
+dwp_get_data <- function(database, measures, row, column, wafer) {
+  # need to get a json-style body query out of this bad boy somehow
+
+  #body_query <- ## Something something
 
 
-  resp <- dwp_get_data_util(query)
-
-  rate_limit  = data.frame(
-    limit = resp$headers$`x-ratelimit`,
-    remaining = resp$headers$`x-ratelimit-remaining`,
-    resets_at = as.POSIXct(as.numeric(resp$headers$`x-ratelimit-reset`)/1000,
-                           origin = "1970-01-01")
-
+  json_df = data.frame(
+    database = I(database),
+    body_query = I(list(measures))
+    dimensions = I(list(row, column, wafer))
   )
 
-}
+  body_query <- jsonlite::toJSON(json_df)
 
+
+  query <- paste0(dwp_baseurl, "table/")
+
+  resp <- dwp_get_data_util(query, body_query)
+
+}

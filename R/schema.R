@@ -1,17 +1,38 @@
-dwp_schema <- function() {
+#' Title
+#'
+#' @return
+#' @export
+#'
+#' @examples
+#'
+#'
 
-  query <-paste0(dwp_baseurl, "rate_limit")
 
+dwp_schema <- function(id = NULL) {
+  if (is.null(id)) {
+    id_query <- id
+  } else {
+    if (substr(id, 1, 4) != "str:") {
+      id_query <- paste0("/str:", id)
+    } else {
+      id_query <- paste0("/", id)
+    }
 
-  resp <- dwp_get_data_util(query)
+  }
 
-  rate_limit  = data.frame(
-    limit = resp$headers$`x-ratelimit`,
-    remaining = resp$headers$`x-ratelimit-remaining`,
-    resets_at = as.POSIXct(as.numeric(resp$headers$`x-ratelimit-reset`)/1000,
-                           origin = "1970-01-01")
+  query <- paste0(dwp_baseurl, "schema", id_query)
 
+  resp <- dwp_get_info_util(query)
+
+  x <- tibble::enframe(resp$children)
+
+  df <- tibble(
+    id = as.character(x$value %>% map("id")),
+    label = as.character(x$value %>% map("label")),
+    location = as.character(x$value %>% map("location")),
+    type = as.character(x$value %>% map("type"))
   )
 
-}
+  df
 
+}
