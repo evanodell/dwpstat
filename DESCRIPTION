@@ -1,0 +1,20 @@
+Type: Package
+Package: dwp
+Title: Get UK Benefits Data
+Version: 0.1.0
+Authors@R: c(
+    person(
+      "Evan", "Odell", email = "evanodell91@gmail.com", role = c("aut", "cre"),
+      comment = c(ORCID='0000-0003-1845-808X'))
+    )
+Description: More about what it does (maybe more than one line)
+    Use four spaces when indenting paragraphs within the Description.
+License: MIT + file LICENSE
+Imports: 
+    httr
+Suggests: 
+    testthat
+VignetteBuilder: knitr
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.0
