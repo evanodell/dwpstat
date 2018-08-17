@@ -13,7 +13,9 @@ License: MIT + file LICENSE
 Imports: 
     httr,
     jsonlite,
-    tibble
+    tibble,
+    magrittr,
+    purrr
 Suggests: 
     testthat
 VignetteBuilder: knitr

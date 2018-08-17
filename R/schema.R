@@ -1,12 +1,10 @@
-#' Title
+#' Schema data
 #'
-#' @return
+#' @return A tibble.
 #' @export
 #'
-#' @examples
+# @examples
 #'
-#'
-
 
 dwp_schema <- function(id = NULL) {
   if (is.null(id)) {
@@ -26,11 +24,11 @@ dwp_schema <- function(id = NULL) {
 
   x <- tibble::enframe(resp$children)
 
-  df <- tibble(
-    id = as.character(x$value %>% map("id")),
-    label = as.character(x$value %>% map("label")),
-    location = as.character(x$value %>% map("location")),
-    type = as.character(x$value %>% map("type"))
+  df <- tibble::tibble(
+    id = as.character(x$value %>% purrr::map("id")),
+    label = as.character(x$value %>% purrr::map("label")),
+    location = as.character(x$value %>% purrr::map("location")),
+    type = as.character(x$value %>% purrr::map("type"))
   )
 
   df

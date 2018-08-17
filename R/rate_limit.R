@@ -2,10 +2,10 @@
 #'
 #' Identify rate limits, remaining requests and request limit reset point.
 #'
-#' @return
+#' @return A DF with rate limits
 #' @export
 #'
-#' @examples
+# @examples
 #'
 #'
 
