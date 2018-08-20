@@ -4,24 +4,86 @@
 \alias{dwp_get_data}
 \title{Submit and receive table queries}
 \usage{
-dwp_get_data(database, measures, row, column, wafer)
+dwp_get_data(database, measures, row, column, wafer, ...)
 }
 \arguments{
-\item{database}{The database}
+\item{database}{The ID of the database to query, as a single string.}
 
-\item{measures}{The measure to use}
+\item{measures}{A character vector of fields to return measures for. Also
+accepts a string if one measure is being queried/}
 
-\item{row}{Row fields}
+\item{row}{A character vector of fields for the row dimension}
 
-\item{column}{Column fields}
+\item{column}{A character vector of fields for the column dimension}
 
-\item{wafer}{Wafer fields}
+\item{wafer}{A character vector of fields for the wafter dimension}
+
+\item{...}{For recode vector Not in use}
 }
 \value{
-A tibble
+A list of six levels:
+
+\enumerate{
+\item{\code{query}} The query submitted to the API, including the database
+used, the measures requested, the dimensions (row, column, wafer), and the
+record request.
+
+\item{\code{database}} Details on the database queried. Contains two vectors:
+\itemize{
+\item{\code{id}} The ID of this dataset
+\item{\code{annotationKeys}} An array of keys to annotations for the dataset.
+If there are annotations available, their descriptions will be in the
+\code{annotationMap} object.
+}
+
+\item{\code{fields}} Details of the fields being queried.
+\itemize{
+\item{\code{uri}} Field ID, or Open Data ID, as returned by \code{\link[=dwp_schema]{dwp_schema()}}.
+\item{\code{label}} The display name for given measure, as displayed in
+\href{https://stat-xplore.dwp.gov.uk/}{Stat-Xplore}.
+\item{\code{items}} An array with the field values returned for each field:
+\itemize{
+\item{\code{type}} The field type. The \code{RecodeItem}, if applicable.
+\item{\code{labels}} Display name(s) for the given field item. If \code{recodes}
+are used, this will contain labels for each created field value.
+\item{\code{annotationKeys}} An array of keys to annotations for the dataset.
+If there are annotations available, their descriptions will be in the
+\code{annotationMap} object.
+\item{\code{uris}} Field ID, or Open Data ID, as returned by \code{\link[=dwp_schema]{dwp_schema()}}.
+}
+\item{\code{annotationKeys}} An array of keys to annotations for the
+dataset. If there are annotations available, their descriptions will be
+in the \code{annotationMap} object.
+}
+
+\item{\code{measures}} An array containing all the measures (summation options)
+returned for the query. For each measure, the API returns:
+\itemize{
+\item{\code{uri}} Field ID, or Open Data ID, as returned by \code{\link[=dwp_schema]{dwp_schema()}}.
+\item{\code{label}} The display name for the given measure, as displayed in
+\href{https://stat-xplore.dwp.gov.uk/}{Stat-Xplore}.
+}
+
+\item{\code{cubes}} An array containing the API query results. There will be
+one item in the array for each requested measure. Each item specifies a
+measure, with the values for each cell in the cube for the given measure.
+
+\item{\code{annotationMap}} The annotations applicable to this query.
+If there are annotations for the dataset or its fields,
+the annotation keys and descriptions will be returned here.
+
+}
 }
 \description{
-Submit and receive table queries
+Table queries contain the actual data from the DWP database. Due to the
+complexity of the API data being returned, and to preserve the flexibility
+of the API query, the API return is not processed into a data frame but is
+preserved as a list.
+}
+\details{
+Returns a list of 6 levels. The descriptions of what each level
+contains are adapted from the
+\href{https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API-Table.html}{API documentation}
 }
 \examples{
 \dontrun{

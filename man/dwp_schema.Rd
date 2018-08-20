@@ -6,9 +6,15 @@
 \usage{
 dwp_schema(id = NULL)
 }
+\arguments{
+\item{id}{}
+}
 \value{
 A tibble.
 }
 \description{
-Schema data
+Schema data is the detail on the datasets and folders available
+at the root level of Stat-Xplore. More details on the \code{schema} endpoint is
+available in the
+\href{https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API-Schema.html}{API documentation}
 }

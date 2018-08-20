@@ -1,24 +1,30 @@
 Type: Package
 Package: dwp
-Title: Get UK Benefits Data
+Title: Access Stat-Xplore data on the UK benefits system
 Version: 0.1.0
 Authors@R: c(
     person(
-      "Evan", "Odell", email = "evanodell91@gmail.com", role = c("aut", "cre"),
+      "Evan", "Odell", email = "evanodell91@gmail.com", 
+      role = c("aut", "cre"),
       comment = c(ORCID='0000-0003-1845-808X'))
     )
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
+Description: Provides access to the 'Stat-Xplore Open Data API'. The API 
+    contains data on the UK benefits system, as available on the 'Stat-Xplore'
+    web service (<https://stat-xplore.dwp.gov.uk/>). See 
+    <https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API.html> 
+    for full API documentation.
 License: MIT + file LICENSE
 Imports: 
     httr,
     jsonlite,
     tibble,
-    magrittr,
     purrr
 Suggests: 
-    testthat
+    testthat,
+    knitr,
+    rmarkdown
 VignetteBuilder: knitr
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.0
+Roxygen: list(markdown = TRUE)

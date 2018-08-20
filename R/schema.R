@@ -1,4 +1,15 @@
+
+
+
 #' Schema data
+#'
+#' Schema data is the detail on the datasets and folders available
+#' at the root level of Stat-Xplore. More details on the `schema` endpoint is
+#' available in the
+#' [API documentation](https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API-Schema.html)
+#'
+#' @param id
+#'
 #'
 #' @return A tibble.
 #' @export
@@ -25,10 +36,10 @@ dwp_schema <- function(id = NULL) {
   x <- tibble::enframe(resp$children)
 
   df <- tibble::tibble(
-    id = as.character(x$value %>% purrr::map("id")),
-    label = as.character(x$value %>% purrr::map("label")),
-    location = as.character(x$value %>% purrr::map("location")),
-    type = as.character(x$value %>% purrr::map("type"))
+    id = as.character(purrr::map(x$value, "id")),
+    label = as.character(purrr::map(x$value, "label")),
+    location = as.character(purrr::map(x$value, "location")),
+    type = as.character(purrr::map(x$value, "type"))
   )
 
   df

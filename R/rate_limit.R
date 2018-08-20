@@ -1,36 +1,22 @@
 #' Rate Limits
 #'
-#' Identify rate limits, remaining requests and request limit reset point.
+#' Identify rate limits, remaining requests and request limit reset point. This
+#' function does not accept any parameters
 #'
-#' @return A DF with rate limits
+#' @return A tibble with one row and three columns:
+#' 1. `remaining` The number of queries remaining from the limit
+#' 1. `reset` The date and time the rate limit resets, in POSIXct class
+#' 1. `limit` The maximum number of queries allowed within a given time span
+#'
+#'
 #' @export
-#'
-# @examples
-#'
-#'
-
-
 
 dwp_rate_limit <- function() {
   query <- paste0(dwp_baseurl, "rate_limit")
 
-  resp <- httr::GET(url = query, config = add_headers(APIKey = getOption("DWP.API.key")))
+  df <- tibble::as_tibble(dwp_get_info_util(query))
 
-  if (httr::http_error(resp)) {
-    stop(
-      paste0(
-        "Stat-Xplore API rate limit request failed with status ",
-        httr::status_code(resp)
-      ),
-      call. = FALSE
-    )
-  }
+  df$reset <- as.POSIXct(df$reset / 1000, origin = "1970-01-01")
 
-  rate_limit <- data.frame(
-    limit = resp$headers$`x-ratelimit`,
-    remaining = resp$headers$`x-ratelimit-remaining`,
-    resets_at = as.POSIXct(as.numeric(resp$headers$`x-ratelimit-reset`) / 1000,
-      origin = "1970-01-01"
-    )
-  )
+  df
 }

@@ -12,7 +12,7 @@
 #' @details You can sign up for an API key
 #'   \href{https://stat-xplore.dwp.gov.uk}{here}.
 #'
-#' @param check_env If TRUE, will check the environment variable
+#' @param check_env If `TRUE`, will check the environment variable
 #'   \code{DWP_API_KEY} first before asking for user input.
 #'
 #' @export

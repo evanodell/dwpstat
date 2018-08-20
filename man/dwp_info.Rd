@@ -2,13 +2,15 @@
 % Please edit documentation in R/info.R
 \name{dwp_info}
 \alias{dwp_info}
-\title{Info}
+\title{Information on the Stat-Xplore API}
 \usage{
 dwp_info()
 }
 \value{
-A Tibble
+A list with available languages on the API
 }
 \description{
-Info
+As of 2018-08-20, \code{dwp_info} only returns the languages available on the
+server, and the only available language is English. This function does
+not accept any parameters.
 }

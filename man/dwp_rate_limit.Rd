@@ -7,8 +7,14 @@
 dwp_rate_limit()
 }
 \value{
-A DF with rate limits
+A tibble with one row and three columns:
+\enumerate{
+\item \code{remaining} The number of queries remaining from the limit
+\item \code{reset} The date and time the rate limit resets, in POSIXct class
+\item \code{limit} The maximum number of queries allowed within a given time span
+}
 }
 \description{
-Identify rate limits, remaining requests and request limit reset point.
+Identify rate limits, remaining requests and request limit reset point. This
+function does not accept any parameters
 }
