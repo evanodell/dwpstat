@@ -7,7 +7,7 @@
 dwp_schema(id = NULL)
 }
 \arguments{
-\item{id}{}
+\item{id}{Defaults to \code{NULL}}
 }
 \value{
 A tibble.

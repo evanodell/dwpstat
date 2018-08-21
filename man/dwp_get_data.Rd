@@ -4,7 +4,7 @@
 \alias{dwp_get_data}
 \title{Submit and receive table queries}
 \usage{
-dwp_get_data(database, measures, row, column, wafer, ...)
+dwp_get_data(database, measures, row, column = NULL, wafer = NULL, ...)
 }
 \arguments{
 \item{database}{The ID of the database to query, as a single string.}

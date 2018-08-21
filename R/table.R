@@ -72,12 +72,6 @@
 #' contains are adapted from the
 #' [API documentation](https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API-Table.html)
 #'
-#
-#'
-#'
-#'
-#'
-#'
 #' @export
 #'
 #' @examples \dontrun{
@@ -94,7 +88,10 @@
 
 
 
-dwp_get_data <- function(database, measures, row, column, wafer, ...) {
+dwp_get_data <- function(database, measures, row, column = NULL, wafer = NULL, ...) {
+  # Need warnings to specify database, measures, row, column
+
+
   dimensions <- list(# List of dimensions becuase doing this below doesn't work
     row,
     column,
@@ -111,6 +108,8 @@ dwp_get_data <- function(database, measures, row, column, wafer, ...) {
 
   body_query <- gsub("^\\[", "", body_query)
 
+  body_query <- gsub(",\\{\\}", "", body_query)
+
   #body_query <- gsub("\\[+$", "", body_query)
 
   body_query <- gsub('.{1}$', '', body_query)
@@ -118,6 +117,8 @@ dwp_get_data <- function(database, measures, row, column, wafer, ...) {
   query <- paste0(dwp_baseurl, "table/")
 
   resp <- dwp_get_data_util(query, body_query)
+
+  resp
 
   #resp$cubes
 

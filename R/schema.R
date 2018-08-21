@@ -8,7 +8,7 @@
 #' available in the
 #' [API documentation](https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API-Schema.html)
 #'
-#' @param id
+#' @param id Defaults to `NULL`
 #'
 #'
 #' @return A tibble.
