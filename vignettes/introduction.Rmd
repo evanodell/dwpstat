@@ -21,12 +21,15 @@ knitr::opts_chunk$set(
 
 The UK Department for Work and Pensions (DWP) operates the [Stat-Xplore](https://stat-xplore.dwp.gov.uk/) database, containing official statistics on benefit claims, caseloads, and other relevant data. The DWP also operates a public API service, which `dwp` wraps. Full documentation for the DWP's API is available (here)[https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API.html].
 
-## Get an API key
+## API key and rate limits
 
 Users need to sign up for a [Stat-Xplore account and create an API key](https://stat-xplore.dwp.gov.uk) to access the API. The API key can be set using `dwp_api_key()`, which checks for an `DWP_API_KEY` environmental variable, and allows users to set the key for a given session.
 
-```{r}
+The API is rate limited, a limit that resets every hour. You can use `dwp_rate_limit()` to check current usage rates.
 
+```{r}
+library(tibble)
+dwp_rate_limit()
 ```
 
 
@@ -37,7 +40,6 @@ Use `dwp_schema()` to identify available datasets, and the variables within thos
 Get a `tibble` of all available folders in the API:
 
 ```{r}
-library(dwp)
 library(tibble)
 
 a <- dwp_schema()
