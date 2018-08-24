@@ -1,21 +1,41 @@
 
 
 
-#' Schema data
+#' API Schema
 #'
-#' Schema data is the detail on the datasets and folders available
+#' Schema data is metadata on the datasets and folders available
 #' at the root level of Stat-Xplore. More details on the `schema` endpoint is
 #' available in the
 #' [API documentation](https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API-Schema.html)
 #'
-#' @param id Defaults to `NULL`
+#' @details
+#'
+#' @param id If `NULL`, returns all folders and databases available at the
+#' root level of the API. If the `id` of a folder, database, etc, returns
+#' all folders, databases, and variables at the level below.
+#' Defaults to `NULL`.
 #'
 #'
 #' @return A tibble.
 #' @export
 #'
-# @examples
+#' @examples \dontrun{
+#' #Get all available folders
+#' a <- dwp_schema()
 #'
+#' # Get all databases in the ESA folder
+#' b <- dwp_schema("str:folder:fesa")
+#'
+#' # Get all variables in the ESA caseload database
+#' c <- dwp_schema("str:database:ESA_Caseload")
+#'
+#' # Given their ID, you can use `dwp_schema` to return the names of levels
+#' # in group and field variables
+#' d <- dwp_schema("str:field:ESA_Caseload:V_F_ESA:CTDURTN")
+#'
+#' # Returns a tibble of levels for the duration options for ESA caseloads
+#' e <- dwp_schema("str:valueset:ESA_Caseload:V_F_ESA:CTDURTN:C_ESA_DURATION")
+#' }
 
 dwp_schema <- function(id = NULL) {
   if (is.null(id)) {

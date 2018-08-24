@@ -8,6 +8,9 @@
 #' To find the number of allowable queries per hour, and the number of
 #' queries remaining, use [dwp_rate_limit()].
 #'
+#' Full documentation of the API is available
+#' (here)[https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API.html].
+#'
 #'
 #' @docType package
 #' @name dwp

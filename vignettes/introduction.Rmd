@@ -17,8 +17,66 @@ knitr::opts_chunk$set(
 ```
 
 
-## Vignette Info
+# Package Info
 
+The UK Department for Work and Pensions (DWP) operates the [Stat-Xplore](https://stat-xplore.dwp.gov.uk/) database, containing official statistics on benefit claims, caseloads, and other relevant data. The DWP also operates a public API service, which `dwp` wraps. Full documentation for the DWP's API is available (here)[https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API.html].
+
+## Get an API key
+
+Users need to sign up for a [Stat-Xplore account and create an API key](https://stat-xplore.dwp.gov.uk) to access the API. The API key can be set using `dwp_api_key()`, which checks for an `DWP_API_KEY` environmental variable, and allows users to set the key for a given session.
+
+```{r}
+
+```
+
+
+## Identify Available Data
+
+Use `dwp_schema()` to identify available datasets, and the variables within those datasets. `dwp_schema()` accepts ID variables at any level and returns all metadata at the level below. If `dwp_schema()` is empty, returns all available data folders at the root level of the API.
+
+Get a `tibble` of all available folders in the API:
+
+```{r}
+library(dwp)
+library(tibble)
+
+a <- dwp_schema()
+
+glimpse(a)
+```
+
+Get a `tibble` of metadata on all databases in the ESA folder
+
+```{r}
+b <- dwp_schema("str:folder:fesa")
+
+glimpse(b)
+```
+
+Get a `tibble` of all variables on all databases in the ESA folder:
+
+```{r}
+c <- dwp_schema("str:database:ESA_Caseload")
+
+glimpse(c)
+```
+
+
+Given their ID, you can use `dwp_scheme` to return the names of levels in group and field variables
+
+```{r}
+d <- dwp_schema("str:field:ESA_Caseload:V_F_ESA:CTDURTN")
+
+glimpse(d)
+```
+
+Returns a `tibble` of levels for the duration options for ESA caseloads
+
+```{r}
+e <- dwp_schema("str:valueset:ESA_Caseload:V_F_ESA:CTDURTN:C_ESA_DURATION")
+
+glimpse(e)
+```
 
 
 
