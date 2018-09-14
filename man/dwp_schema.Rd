@@ -2,19 +2,45 @@
 % Please edit documentation in R/schema.R
 \name{dwp_schema}
 \alias{dwp_schema}
-\title{Schema data}
+\title{API Schema}
 \usage{
 dwp_schema(id = NULL)
 }
 \arguments{
-\item{id}{Defaults to \code{NULL}}
+\item{id}{If \code{NULL}, returns all folders and databases available at the
+root level of the API. If the \code{id} of a folder, database, etc, returns
+all folders, databases, and variables at the level below.
+Defaults to \code{NULL}.}
 }
 \value{
-A tibble.
+A tibble with the relevant
 }
 \description{
-Schema data is the detail on the datasets and folders available
+Schema data is metadata on the datasets and folders available
 at the root level of Stat-Xplore. More details on the \code{schema} endpoint is
 available in the
 \href{https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API-Schema.html}{API documentation}
+}
+\details{
+\code{dwp_schema} can be used iteratively to get folders and databases
+at each level.
+}
+\examples{
+\dontrun{
+#Get all available folders
+a <- dwp_schema()
+
+# Get all databases in the ESA folder
+b <- dwp_schema("str:folder:fesa")
+
+# Get all variables in the ESA caseload database
+c <- dwp_schema("str:database:ESA_Caseload")
+
+# Given their ID, you can use `dwp_schema` to return the names of levels
+# in group and field variables
+d <- dwp_schema("str:field:ESA_Caseload:V_F_ESA:CTDURTN")
+
+# Returns a tibble of levels for the duration options for ESA caseloads
+e <- dwp_schema("str:valueset:ESA_Caseload:V_F_ESA:CTDURTN:C_ESA_DURATION")
+}
 }

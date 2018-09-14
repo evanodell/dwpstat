@@ -4,21 +4,25 @@
 \alias{dwp_get_data}
 \title{Submit and receive table queries}
 \usage{
-dwp_get_data(database, measures, row, column = NULL, wafer = NULL, ...)
+dwp_get_data(database, measures, column, row = NULL, wafer = NULL, ...)
 }
 \arguments{
-\item{database}{The ID of the database to query, as a single string.}
+\item{database}{The ID of the database to query, as a single string.
+Must be specified.}
 
 \item{measures}{A character vector of fields to return measures for. Also
-accepts a string if one measure is being queried/}
+accepts a string if one measure is being queried. Must be specified.}
 
-\item{row}{A character vector of fields for the row dimension}
+\item{column}{A character vector of fields for the column dimension. Also
+accepts a string if one measure is being queried. Must be specified.}
 
-\item{column}{A character vector of fields for the column dimension}
+\item{row}{A character vector of fields for the row dimension. Also
+accepts a string if one measure is being queried.}
 
-\item{wafer}{A character vector of fields for the wafter dimension}
+\item{wafer}{A character vector of fields for the wafter dimension. Also
+accepts a string if one measure is being queried}
 
-\item{...}{For recode vector Not in use}
+\item{...}{For recode vector. Not in use}
 }
 \value{
 A list of six levels:
@@ -90,9 +94,9 @@ contains are adapted from the
 
 x <- dwp_get_data(database = "str:database:ESA_Caseload",
                   measures = "str:count:ESA_Caseload:V_F_ESA",
-                  row = "str:field:ESA_Caseload:V_F_ESA:ICDGP",
                   column = c("str:field:ESA_Caseload:V_F_ESA:CCSEX",
                              "str:field:ESA_Caseload:V_F_ESA:CTDURTN"),
+                  row = "str:field:ESA_Caseload:V_F_ESA:ICDGP",
                   wafer = "str:field:ESA_Caseload:V_F_ESA:IB_MIG")
 
 

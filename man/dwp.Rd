@@ -12,3 +12,7 @@ use \code{\link[=dwp_api_key]{dwp_api_key()}}. The API is free to use, but queri
 To find the number of allowable queries per hour, and the number of
 queries remaining, use \code{\link[=dwp_rate_limit]{dwp_rate_limit()}}.
 }
+\details{
+Full documentation of the API is available
+(here)\link{https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API.html}.
+}

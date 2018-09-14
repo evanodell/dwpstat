@@ -1,7 +1,9 @@
 
 dwp_get_info_util <- function(query) {
-  api_get <- httr::GET(url = query,
-                       config = httr::add_headers(APIKey = getOption("DWP.API.key")))
+  api_get <- httr::GET(
+    url = query,
+    config = httr::add_headers(APIKey = getOption("DWP.API.key"))
+    )
 
   if (httr::http_error(api_get)) {
     stop(

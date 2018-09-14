@@ -8,12 +8,16 @@
 #' preserved as a list.
 #'
 #' @param database The ID of the database to query, as a single string.
+#' Must be specified.
 #' @param measures A character vector of fields to return measures for. Also
-#' accepts a string if one measure is being queried/
-#' @param row A character vector of fields for the row dimension
-#' @param column A character vector of fields for the column dimension
-#' @param wafer A character vector of fields for the wafter dimension
-#' @param ... For recode vector Not in use
+#' accepts a string if one measure is being queried. Must be specified.
+#' @param column A character vector of fields for the column dimension. Also
+#' accepts a string if one measure is being queried. Must be specified.
+#' @param row A character vector of fields for the row dimension. Also
+#' accepts a string if one measure is being queried.
+#' @param wafer A character vector of fields for the wafter dimension. Also
+#' accepts a string if one measure is being queried
+#' @param ... For recode vector. Not in use
 #'
 #' @return A list of six levels:
 #'
@@ -78,19 +82,24 @@
 #'
 #' x <- dwp_get_data(database = "str:database:ESA_Caseload",
 #'                   measures = "str:count:ESA_Caseload:V_F_ESA",
-#'                   row = "str:field:ESA_Caseload:V_F_ESA:ICDGP",
 #'                   column = c("str:field:ESA_Caseload:V_F_ESA:CCSEX",
 #'                              "str:field:ESA_Caseload:V_F_ESA:CTDURTN"),
+#'                   row = "str:field:ESA_Caseload:V_F_ESA:ICDGP",
 #'                   wafer = "str:field:ESA_Caseload:V_F_ESA:IB_MIG")
 #'
 #'
 #' }
 
+dwp_get_data <- function(database, measures, column,
+                         row = NULL, wafer = NULL, ...) {
+  if (any(c(missing(database), missing(measures), missing(column)))) {
 
-
-dwp_get_data <- function(database, measures, row, column = NULL, wafer = NULL, ...) {
+    passed <- names(as.list(match.call())[-1])
+    stop(paste("missing values for",
+               paste(setdiff(c("database", "measures", "column"), passed),
+                     collapse=", ")), call. = FALSE)
+  }
   # Need warnings to specify database, measures, row, column
-
 
   dimensions <- list(# List of dimensions becuase doing this below doesn't work
     row,
@@ -98,7 +107,7 @@ dwp_get_data <- function(database, measures, row, column = NULL, wafer = NULL, .
     wafer
   )
 
-  json_df = data.frame(
+  json_df <- data.frame(
     database = I(database),
     measures = I(list(measures)),
     dimensions = I(list(dimensions))
