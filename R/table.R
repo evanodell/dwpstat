@@ -93,15 +93,17 @@
 dwp_get_data <- function(database, measures, column,
                          row = NULL, wafer = NULL, ...) {
   if (any(c(missing(database), missing(measures), missing(column)))) {
-
     passed <- names(as.list(match.call())[-1])
-    stop(paste("missing values for",
-               paste(setdiff(c("database", "measures", "column"), passed),
-                     collapse=", ")), call. = FALSE)
+    stop(paste(
+      "missing values for",
+      paste(setdiff(c("database", "measures", "column"), passed),
+        collapse = ", "
+      )
+    ), call. = FALSE)
   }
   # Need warnings to specify database, measures, row, column
 
-  dimensions <- list(# List of dimensions becuase doing this below doesn't work
+  dimensions <- list( # List of dimensions becuase doing this below doesn't work
     row,
     column,
     wafer
@@ -119,9 +121,9 @@ dwp_get_data <- function(database, measures, column,
 
   body_query <- gsub(",\\{\\}", "", body_query)
 
-  #body_query <- gsub("\\[+$", "", body_query)
+  # body_query <- gsub("\\[+$", "", body_query)
 
-  body_query <- gsub('.{1}$', '', body_query)
+  body_query <- gsub(".{1}$", "", body_query)
 
   query <- paste0(dwp_baseurl, "table/")
 
@@ -129,6 +131,5 @@ dwp_get_data <- function(database, measures, column,
 
   resp
 
-  #resp$cubes
-
+  # resp$cubes
 }

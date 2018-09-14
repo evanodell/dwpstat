@@ -4,7 +4,8 @@ dwp_get_data_util <- function(query, body_query) {
   api_get <- httr::POST(
     url = query, body = body_query,
     config = httr::add_headers(APIKey = getOption("DWP.API.key")),
-    encode = "json")
+    encode = "json"
+  )
 
   httr::status_code(api_get)
 
@@ -13,7 +14,7 @@ dwp_get_data_util <- function(query, body_query) {
       paste0(
         "Stat-Xplore API request failed with status ",
         httr::status_code(api_get),
-        if(httr::status_code(api_get) == 422) {
+        if (httr::status_code(api_get) == 422) {
           ". Please check your parameters."
         } else if (httr::status_code(api_get) == 403) {
           ". Please check your API key."
@@ -24,9 +25,4 @@ dwp_get_data_util <- function(query, body_query) {
   }
 
   df <- httr::content(api_get)
-
 }
-
-
-
-

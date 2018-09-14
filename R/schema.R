@@ -44,7 +44,6 @@ dwp_schema <- function(id = NULL) {
     } else {
       id_query <- paste0("/", id)
     }
-
   }
 
   query <- paste0(dwp_baseurl, "schema", id_query)
@@ -61,5 +60,4 @@ dwp_schema <- function(id = NULL) {
   )
 
   df
-
 }
