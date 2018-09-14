@@ -1,6 +1,4 @@
 
-
-
 #' API Schema
 #'
 #' Schema data is metadata on the datasets and folders available
@@ -8,15 +6,15 @@
 #' available in the
 #' [API documentation](https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API-Schema.html)
 #'
-#' @details
+#' @details `dwp_schema` can be used iteratively to get folders and databases
+#' at each level.
 #'
 #' @param id If `NULL`, returns all folders and databases available at the
 #' root level of the API. If the `id` of a folder, database, etc, returns
 #' all folders, databases, and variables at the level below.
 #' Defaults to `NULL`.
 #'
-#'
-#' @return A tibble.
+#' @return A tibble with the relevant
 #' @export
 #'
 #' @examples \dontrun{
