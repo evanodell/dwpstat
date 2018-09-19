@@ -3,7 +3,7 @@
 \docType{package}
 \name{dwp}
 \alias{dwp-package}
-\title{dwp: Access Stat-Xplore data on the UK benefits system}
+\title{dwp: Access 'Stat-Xplore' data on the UK benefits system}
 \description{
 The Stat-Xplore Open Data API is a JSON REST API, with the same data as
 on the \href{https://stat-xplore.dwp.gov.uk/}{Stat-Xplore} online service. All

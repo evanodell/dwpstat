@@ -79,7 +79,6 @@
 #' @export
 #'
 #' @examples \dontrun{
-#'
 #' x <- dwp_get_data(database = "str:database:ESA_Caseload",
 #'                   measures = "str:count:ESA_Caseload:V_F_ESA",
 #'                   column = c("str:field:ESA_Caseload:V_F_ESA:CCSEX",
@@ -90,8 +89,7 @@
 #'
 #' z <- dwp_get_data(database = "str:database:PIP_Monthly",
 #'                     measures = "str:count:PIP_Monthly:V_F_PIP_MONTHLY",
-#'                     column = str:field:PIP_Monthly:V_F_PIP_MONTHLY:SEX")
-#'
+#'                     column = "str:field:PIP_Monthly:V_F_PIP_MONTHLY:SEX")
 #' }
 
 dwp_get_data <- function(database, measures, column,
@@ -126,8 +124,6 @@ dwp_get_data <- function(database, measures, column,
 
   body_query <- gsub(",\\{\\}", "", body_query)
 
-  # body_query <- gsub("\\[+$", "", body_query)
-
   body_query <- gsub(".{1}$", "", body_query)
 
   query <- paste0(dwp_baseurl, "table/")
@@ -135,6 +131,4 @@ dwp_get_data <- function(database, measures, column,
   resp <- dwp_get_data_util(query, body_query)
 
   resp
-
-  # resp$cubes
 }

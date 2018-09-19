@@ -91,7 +91,6 @@ contains are adapted from the
 }
 \examples{
 \dontrun{
-
 x <- dwp_get_data(database = "str:database:ESA_Caseload",
                   measures = "str:count:ESA_Caseload:V_F_ESA",
                   column = c("str:field:ESA_Caseload:V_F_ESA:CCSEX",
@@ -100,5 +99,8 @@ x <- dwp_get_data(database = "str:database:ESA_Caseload",
                   wafer = "str:field:ESA_Caseload:V_F_ESA:IB_MIG")
 
 
+z <- dwp_get_data(database = "str:database:PIP_Monthly",
+                    measures = "str:count:PIP_Monthly:V_F_PIP_MONTHLY",
+                    column = "str:field:PIP_Monthly:V_F_PIP_MONTHLY:SEX")
 }
 }
