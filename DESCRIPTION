@@ -1,7 +1,7 @@
 Type: Package
-Package: dwp
-Title: Access Stat-Xplore data on the UK benefits system
-Version: 0.1.0
+Package: dwpstat
+Title: Access 'Stat-Xplore' data on the UK benefits system
+Version: 0.0.0.9000
 Authors@R: c(
     person(
       "Evan", "Odell", email = "evanodell91@gmail.com", 
