@@ -82,3 +82,20 @@ glimpse(e)
 
 
 
+
+```{r}
+  z <- dwp_get_data(database = "str:database:PIP_Monthly",
+                  measures = "str:count:PIP_Monthly:V_F_PIP_MONTHLY",
+                  column = "str:field:PIP_Monthly:V_F_PIP_MONTHLY:SEX",
+                  row = "str:field:PIP_Monthly:F_PIP_DATE:DATE2")
+
+  z2 <- as.data.frame(map(z$cubes, "values"))
+
+  e <- z$fields$items
+
+  names(z2) <- e[[2]]$labels
+
+  z2$date <- e[[1]]$labels
+
+```
+
