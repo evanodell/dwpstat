@@ -1,5 +1,5 @@
 
-#' dwp: Access Stat-Xplore data on the UK benefits system
+#' dwp: Access 'Stat-Xplore' data on the UK benefits system
 #'
 #' The Stat-Xplore Open Data API is a JSON REST API, with the same data as
 #' on the [Stat-Xplore](https://stat-xplore.dwp.gov.uk/) online service. All

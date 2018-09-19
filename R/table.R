@@ -101,13 +101,14 @@ dwp_get_data <- function(database, measures, column,
       )
     ), call. = FALSE)
   }
-  # Need warnings to specify database, measures, row, column
 
   dimensions <- list( # List of dimensions becuase doing this below doesn't work
     row,
     column,
     wafer
   )
+
+  dimensions <- Filter(Negate(is.null), dimensions) # Remove NULL levels
 
   json_df <- data.frame(
     database = I(database),
