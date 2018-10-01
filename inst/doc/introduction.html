@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Evan Odell" />
+
+<meta name="date" content="2018-10-01" />
+
+<title>Introduction to dwpstat</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; position: absolute; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource a.sourceLine:empty
+  { position: absolute; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#header {
+text-align: center;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">Introduction to <code>dwpstat</code></h1>
+<h4 class="author"><em>Evan Odell</em></h4>
+<h4 class="date"><em>2018-10-01</em></h4>
+
+
+
+<div id="package-info" class="section level1">
+<h1>Package Info</h1>
+<p>The UK Department for Work and Pensions (DWP) operates the <a href="https://stat-xplore.dwp.gov.uk/">Stat-Xplore</a> database, containing official statistics on benefit claims, caseloads, and other relevant data. The DWP also operates a public API service, which <code>dwpstat</code> wraps. Full documentation for the DWP’s API is available (here)[<a href="https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API.html" class="uri">https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API.html</a>].</p>
+<div id="api-key-and-rate-limits" class="section level2">
+<h2>API key and rate limits</h2>
+<p>Users need to sign up for a <a href="https://stat-xplore.dwp.gov.uk">Stat-Xplore account and create an API key</a> to access the API. The API key can be set using <code>dwp_api_key()</code>, which checks for an <code>DWP_API_KEY</code> environmental variable, and allows users to set the key for a given session.</p>
+<p>The API is rate limited, a limit that resets every hour. You can use <code>dwp_rate_limit()</code> to check current usage rates.</p>
+<pre><code>library(dwpstat)
+dwp_rate_limit()
+# A tibble: 1 x 3
+  remaining reset               limit
+      &lt;int&gt; &lt;dttm&gt;              &lt;int&gt;
+      9997 2018-10-01 14:18:42 10000</code></pre>
+</div>
+<div id="identify-available-data" class="section level2">
+<h2>Identify Available Data</h2>
+<p>Use <code>dwp_schema()</code> to identify available datasets, and the variables within those datasets. <code>dwp_schema()</code> accepts ID variables at any level and returns all metadata at the level below. If <code>dwp_schema()</code> is empty, returns all available data folders at the root level of the API.</p>
+<p>Get a <code>tibble</code> of all available folders in the API:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">library</span>(tibble)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">a &lt;-<span class="st"> </span><span class="kw">dwp_schema</span>()</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4"></a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"><span class="kw">glimpse</span>(a)</a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#&gt; Observations: 23</span></a>
+<a class="sourceLine" id="cb2-7" data-line-number="7"><span class="co">#&gt; Variables: 4</span></a>
+<a class="sourceLine" id="cb2-8" data-line-number="8"><span class="co">#&gt; $ id       &lt;chr&gt; &quot;str:folder:faa&quot;, &quot;str:folder:fbc&quot;, &quot;str:folder:fbenc...</span></a>
+<a class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#&gt; $ label    &lt;chr&gt; &quot;Attendance Allowance&quot;, &quot;Benefit Cap&quot;, &quot;Benefit Combi...</span></a>
+<a class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#&gt; $ location &lt;chr&gt; &quot;http://stat-xplore.dwp.gov.uk/webapi/rest/v1/schema/...</span></a>
+<a class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#&gt; $ type     &lt;chr&gt; &quot;FOLDER&quot;, &quot;FOLDER&quot;, &quot;FOLDER&quot;, &quot;FOLDER&quot;, &quot;FOLDER&quot;, &quot;FO...</span></a></code></pre></div>
+<p>Get a <code>tibble</code> of metadata on all databases in the ESA folder</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">b &lt;-<span class="st"> </span><span class="kw">dwp_schema</span>(<span class="st">&quot;str:folder:fesa&quot;</span>)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">glimpse</span>(b)</a>
+<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt; Observations: 1</span></a>
+<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt; Variables: 4</span></a>
+<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; $ id       &lt;chr&gt; &quot;str:database:ESA_Caseload&quot;</span></a>
+<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; $ label    &lt;chr&gt; &quot;ESA Caseload&quot;</span></a>
+<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; $ location &lt;chr&gt; &quot;http://stat-xplore.dwp.gov.uk/webapi/rest/v1/schema/...</span></a>
+<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; $ type     &lt;chr&gt; &quot;DATABASE&quot;</span></a></code></pre></div>
+<p>Get a <code>tibble</code> of all variables on all databases in the ESA folder:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">c &lt;-<span class="st"> </span><span class="kw">dwp_schema</span>(<span class="st">&quot;str:database:ESA_Caseload&quot;</span>)</a>
+<a class="sourceLine" id="cb4-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="kw">glimpse</span>(c)</a>
+<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">#&gt; Observations: 15</span></a>
+<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">#&gt; Variables: 4</span></a>
+<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">#&gt; $ id       &lt;chr&gt; &quot;str:count:ESA_Caseload:V_F_ESA&quot;, &quot;str:measure:ESA_Ca...</span></a>
+<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">#&gt; $ label    &lt;chr&gt; &quot;Employment and Support Allowance Caseload&quot;, &quot;Weekly ...</span></a>
+<a class="sourceLine" id="cb4-8" data-line-number="8"><span class="co">#&gt; $ location &lt;chr&gt; &quot;http://stat-xplore.dwp.gov.uk/webapi/rest/v1/schema/...</span></a>
+<a class="sourceLine" id="cb4-9" data-line-number="9"><span class="co">#&gt; $ type     &lt;chr&gt; &quot;COUNT&quot;, &quot;MEASURE&quot;, &quot;GROUP&quot;, &quot;FIELD&quot;, &quot;GROUP&quot;, &quot;FIELD...</span></a></code></pre></div>
+<p>Given their ID, you can use <code>dwp_scheme</code> to return the names of levels in group and field variables</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">d &lt;-<span class="st"> </span><span class="kw">dwp_schema</span>(<span class="st">&quot;str:field:ESA_Caseload:V_F_ESA:CTDURTN&quot;</span>)</a>
+<a class="sourceLine" id="cb5-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="kw">glimpse</span>(d)</a>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; Observations: 1</span></a>
+<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt; Variables: 4</span></a>
+<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt; $ id       &lt;chr&gt; &quot;str:valueset:ESA_Caseload:V_F_ESA:CTDURTN:C_ESA_DURA...</span></a>
+<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt; $ label    &lt;chr&gt; &quot;Duration of current claim&quot;</span></a>
+<a class="sourceLine" id="cb5-8" data-line-number="8"><span class="co">#&gt; $ location &lt;chr&gt; &quot;http://stat-xplore.dwp.gov.uk/webapi/rest/v1/schema/...</span></a>
+<a class="sourceLine" id="cb5-9" data-line-number="9"><span class="co">#&gt; $ type     &lt;chr&gt; &quot;VALUESET&quot;</span></a></code></pre></div>
+<p>Returns a <code>tibble</code> of levels for the duration options for ESA caseloads</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">e &lt;-<span class="st"> </span><span class="kw">dwp_schema</span>(<span class="st">&quot;str:valueset:ESA_Caseload:V_F_ESA:CTDURTN:C_ESA_DURATION&quot;</span>)</a>
+<a class="sourceLine" id="cb6-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="kw">glimpse</span>(e)</a>
+<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="co">#&gt; Observations: 7</span></a>
+<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt; Variables: 4</span></a>
+<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt; $ id       &lt;chr&gt; &quot;str:value:ESA_Caseload:V_F_ESA:CTDURTN:C_ESA_DURATIO...</span></a>
+<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co">#&gt; $ label    &lt;chr&gt; &quot;Up to 3 months&quot;, &quot;3 months up to 6 months&quot;, &quot;6 month...</span></a>
+<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#&gt; $ location &lt;chr&gt; &quot;http://stat-xplore.dwp.gov.uk/webapi/rest/v1/schema/...</span></a>
+<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="co">#&gt; $ type     &lt;chr&gt; &quot;VALUE&quot;, &quot;VALUE&quot;, &quot;VALUE&quot;, &quot;VALUE&quot;, &quot;VALUE&quot;, &quot;VALUE&quot;,...</span></a></code></pre></div>
+</div>
+<div id="get-data" class="section level2">
+<h2>Get data</h2>
+<p>Due to the structure of the API, actual data is returned in a list with six levels. The process for converting that data to a data frame or tibble varies considerably depending on the <code>column</code>, <code>row</code> and <code>wafer</code> fields used, and so no generic function for conversion is provided at this time.</p>
+<p>The data structure can be difficult to work with in R; it is often unclear how to match together data labels, in the <code>fields</code> list level, with the actual data, in the <code>cubes</code> level. The example below shows a relatively simple process of assigning names to a query.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">library</span>(purrr)</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">pip &lt;-<span class="st"> </span><span class="kw">dwp_get_data</span>(<span class="dt">database =</span> <span class="st">&quot;str:database:PIP_Monthly&quot;</span>,</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">                  <span class="dt">measures =</span> <span class="st">&quot;str:count:PIP_Monthly:V_F_PIP_MONTHLY&quot;</span>,</a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">                  <span class="dt">column =</span> <span class="st">&quot;str:field:PIP_Monthly:V_F_PIP_MONTHLY:SEX&quot;</span>,</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5">                  <span class="dt">row =</span> <span class="st">&quot;str:field:PIP_Monthly:F_PIP_DATE:DATE2&quot;</span>)</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb7-7" data-line-number="7">pip2 &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(<span class="kw">map</span>(pip<span class="op">$</span>cubes, <span class="st">&quot;values&quot;</span>))</a>
+<a class="sourceLine" id="cb7-8" data-line-number="8"></a>
+<a class="sourceLine" id="cb7-9" data-line-number="9">pip_names &lt;-<span class="st"> </span>pip<span class="op">$</span>fields<span class="op">$</span>items</a>
+<a class="sourceLine" id="cb7-10" data-line-number="10"></a>
+<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="kw">names</span>(pip2) &lt;-<span class="st"> </span>pip_names[[<span class="dv">2</span>]]<span class="op">$</span>labels</a>
+<a class="sourceLine" id="cb7-12" data-line-number="12"></a>
+<a class="sourceLine" id="cb7-13" data-line-number="13">pip2<span class="op">$</span>date &lt;-<span class="st"> </span>pip_names[[<span class="dv">1</span>]]<span class="op">$</span>labels</a></code></pre></div>
+</div>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
