@@ -17,12 +17,12 @@ accepts a string if one measure is being queried. Must be specified.}
 accepts a string if one measure is being queried. Must be specified.}
 
 \item{row}{A character vector of fields for the row dimension. Also
-accepts a string if one measure is being queried.}
+accepts a string if one measure is being queried. Defaults to \code{NULL}.}
 
 \item{wafer}{A character vector of fields for the wafter dimension. Also
-accepts a string if one measure is being queried}
+accepts a string if one measure is being queried. Defaults to \code{NULL}.}
 
-\item{...}{For recode vector. Not in use}
+\item{...}{For recode vector. Not in use.}
 }
 \value{
 A list of six levels:
@@ -87,7 +87,7 @@ preserved as a list.
 \details{
 Returns a list of 6 levels. The descriptions of what each level
 contains are adapted from the
-\href{https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API-Table.html}{API documentation}
+\href{https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API-Table.html}{API documentation}.
 }
 \examples{
 \dontrun{

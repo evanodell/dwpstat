@@ -14,10 +14,10 @@
 #' @param column A character vector of fields for the column dimension. Also
 #' accepts a string if one measure is being queried. Must be specified.
 #' @param row A character vector of fields for the row dimension. Also
-#' accepts a string if one measure is being queried.
+#' accepts a string if one measure is being queried. Defaults to \code{NULL}.
 #' @param wafer A character vector of fields for the wafter dimension. Also
-#' accepts a string if one measure is being queried
-#' @param ... For recode vector. Not in use
+#' accepts a string if one measure is being queried. Defaults to \code{NULL}.
+#' @param ... For recode vector. Not in use.
 #'
 #' @return A list of six levels:
 #'
@@ -74,7 +74,7 @@
 #'
 #' @details Returns a list of 6 levels. The descriptions of what each level
 #' contains are adapted from the
-#' [API documentation](https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API-Table.html)
+#' [API documentation](https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API-Table.html).
 #'
 #' @export
 #'
@@ -104,7 +104,7 @@ dwp_get_data <- function(database, measures, column,
     ), call. = FALSE)
   }
 
-  dimensions <- list( # List of dimensions becuase doing this below doesn't work
+  dimensions <- list( # List of dimensions because doing this below doesn't work
     row,
     column,
     wafer

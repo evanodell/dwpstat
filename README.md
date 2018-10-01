@@ -15,16 +15,18 @@ Pensions.
 The ‘Stat-Xplore Open Data API’ is a JSON REST API, with the same data
 as on the [Stat-Xplore](https://stat-xplore.dwp.gov.uk/) online service.
 All queries require the use of an API key. To set up an API key, use
-\[dwp\_api\_key()\]. The API is free to use, but queries are rate
-limited. To find the number of allowable queries per hour, and the
-number of queries remaining, use \[dwp\_rate\_limit()\].
+`dwp_api_key()`. The API is free to use, but queries are rate limited.
+To find the number of allowable queries per hour, and the number of
+queries remaining, use `dwp_rate_limit()`.
 
 Full documentation of the API is available
 (here)\[<https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API.html>\].
 
 `dwpstat` returns metadata in
 (`tibble`)\[<https://cran.r-project.org/package=tibble>\] format, and
-data in a list format.
+data in a list format. The list format is very messy, thanks to the way
+the API is built, and so `dwpstat` does not convert this data into a
+(`tibble`)\[<https://cran.r-project.org/package=tibble>\] or similar.
 
 ## Installation
 
@@ -33,18 +35,21 @@ You can install the development version of `dwpstat` from GitHub with:
     # install.packages("devtools")
     devtools::install_github("evanodell/dwpstat")
 
-``` r
-library(dwpstat)
-x <- dwp_get_data(database = "str:database:ESA_Caseload",
-                   measures = "str:count:ESA_Caseload:V_F_ESA",
-                   column = c("str:field:ESA_Caseload:V_F_ESA:CCSEX",
-                              "str:field:ESA_Caseload:V_F_ESA:CTDURTN"),
-                   row = "str:field:ESA_Caseload:V_F_ESA:ICDGP",
-                   wafer = "str:field:ESA_Caseload:V_F_ESA:IB_MIG")
+## Use
 
-class(x)
-#> [1] "list"
-```
+    library(dwpstat)
+    x <- dwp_get_data(database = "str:database:ESA_Caseload",
+                       measures = "str:count:ESA_Caseload:V_F_ESA",
+                       column = c("str:field:ESA_Caseload:V_F_ESA:CCSEX",
+                                  "str:field:ESA_Caseload:V_F_ESA:CTDURTN"),
+                       row = "str:field:ESA_Caseload:V_F_ESA:ICDGP",
+                       wafer = "str:field:ESA_Caseload:V_F_ESA:IB_MIG")
+    
+    class(x)
+    [1] "list"
+    
+    names(x)
+    [1] "query"         "database"      "measures"      "fields"        "cubes"         "annotationMap"
 
 ## Meta
 
@@ -67,9 +72,15 @@ system*. doi: 10.5281/zenodo.1421684 (URL:
 
 A BibTeX entry for LaTeX users is
 
-@Manual{, title = {{dwpstat}: Access ‘Stat-Xplore’ data on the UK
-benefits system}, author = {Evan Odell}, year = {2018}, note = {R
-package version 0.0.0.9000}, doi = {10.5281/zenodo.1421684}, url =
-{<https://github.com/evanodell/dwpstats>}, }
+``` 
+  @Manual{,
+    title = {{dwpstat}: Access 'Stat-Xplore' data on the UK benefits system},
+    author = {Evan Odell},
+    year = {2018},
+    note = {R package version 0.0.0.9000},
+    doi = {10.5281/zenodo.1421684},
+    url = {https://github.com/evanodell/dwpstats},
+  }
+```
 
 License: [MIT](LICENSE.md)

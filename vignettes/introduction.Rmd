@@ -80,22 +80,26 @@ e <- dwp_schema("str:valueset:ESA_Caseload:V_F_ESA:CTDURTN:C_ESA_DURATION")
 glimpse(e)
 ```
 
+## Get data
 
+Due to the structure of the API, actual data is returned in a list with six levels. The process for converting that data to a data frame or tibble varies considerably depending on the `column`, `row` and `wafer` fields used, and so no generic function for conversion is provided at this time.
 
+The data structure can be difficult to work with in R; it is often unclear how to match together data labels, in the `fields` list level, with the actual data, in the `cubes` level. The example below shows a relatively simple process of assigning names to a query.
 
 ```{r}
-  z <- dwp_get_data(database = "str:database:PIP_Monthly",
+library(purrr)
+pip <- dwp_get_data(database = "str:database:PIP_Monthly",
                   measures = "str:count:PIP_Monthly:V_F_PIP_MONTHLY",
                   column = "str:field:PIP_Monthly:V_F_PIP_MONTHLY:SEX",
                   row = "str:field:PIP_Monthly:F_PIP_DATE:DATE2")
 
-  z2 <- as.data.frame(map(z$cubes, "values"))
+pip2 <- as.data.frame(map(pip$cubes, "values"))
 
-  e <- z$fields$items
+pip_names <- pip$fields$items
 
-  names(z2) <- e[[2]]$labels
+names(pip2) <- pip_names[[2]]$labels
 
-  z2$date <- e[[1]]$labels
+pip2$date <- pip_names[[1]]$labels
 
 ```
 

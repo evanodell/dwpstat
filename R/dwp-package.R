@@ -17,7 +17,6 @@
 #' @importFrom jsonlite fromJSON toJSON
 #' @importFrom tibble as_tibble enframe
 #' @importFrom httr http_type GET http_error status_code add_headers content
-#' @importFrom purrr map
 #' @aliases NULL dwp-package
 NULL
 
