@@ -22,13 +22,13 @@ To find the number of allowable queries per hour, and the number of
 queries remaining, use `dwp_rate_limit()`.
 
 Full documentation of the API is available
-(here)\[<https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API.html>\].
+[here](https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API.html).
 
 `dwpstat` returns metadata in
-(`tibble`)\[<https://cran.r-project.org/package=tibble>\] format, and
-data in a list format. The list format is very messy, thanks to the way
-the API is built, and so `dwpstat` does not convert this data into a
-(`tibble`)\[<https://cran.r-project.org/package=tibble>\] or similar.
+[`tibble`](https://cran.r-project.org/package=tibble) format, and data
+in a list format. The list format is very messy, thanks to the way the
+API is built, and so `dwpstat` does not convert this data into a
+[`tibble`](https://cran.r-project.org/package=tibble) or similar.
 
 ## Installation
 

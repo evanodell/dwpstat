@@ -24,9 +24,9 @@ This package provides access to the 'Stat-Xplore Open Data API', containing welf
 
 The 'Stat-Xplore Open Data API' is a JSON REST API, with the same data as on the [Stat-Xplore](https://stat-xplore.dwp.gov.uk/) online service. All queries require the use of an API key. To set up an API key, use `dwp_api_key()`. The API is free to use, but queries are rate limited. To find the number of allowable queries per hour, and the number of queries remaining, use `dwp_rate_limit()`.
 
-Full documentation of the API is available (here)[https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API.html].
+Full documentation of the API is available [here](https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API.html).
 
-`dwpstat` returns metadata in (`tibble`)[https://cran.r-project.org/package=tibble] format, and data in a list format. The list format is very messy, thanks to the way the API is built, and so `dwpstat` does not convert this data into a (`tibble`)[https://cran.r-project.org/package=tibble] or similar.
+`dwpstat` returns metadata in [`tibble`](https://cran.r-project.org/package=tibble) format, and data in a list format. The list format is very messy, thanks to the way the API is built, and so `dwpstat` does not convert this data into a [`tibble`](https://cran.r-project.org/package=tibble) or similar.
 
 
 ## Installation
