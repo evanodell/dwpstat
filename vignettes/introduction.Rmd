@@ -43,45 +43,80 @@ Use `dwp_schema()` to identify available datasets, and the variables within thos
 
 Get a `tibble` of all available folders in the API:
 
-```{r schema-a}
+```
 library(tibble)
 
 a <- dwp_schema()
 
 glimpse(a)
+
+Observations: 23
+Variables: 4
+$ id       <chr> "str:folder:faa", "str:folder:fbc", "str:folder:fbencom", "str:folder:fbb", "str:folder:fca...
+$ label    <chr> "Attendance Allowance", "Benefit Cap", "Benefit Combinations", "Bereavement Benefits", "Car...
+$ location <chr> "http://stat-xplore.dwp.gov.uk/webapi/rest/v1/schema/str:folder:faa", "http://stat-xplore.d...
+$ type     <chr> "FOLDER", "FOLDER", "FOLDER", "FOLDER", "FOLDER", "FOLDER", "FOLDER", "FOLDER", "FOLDER", "...
 ```
 
 Get a `tibble` of metadata on all databases in the ESA folder
 
-```{r schema-b}
+```
+
 b <- dwp_schema("str:folder:fesa")
 
 glimpse(b)
+
+Observations: 1
+Variables: 4
+$ id       <chr> "str:database:ESA_Caseload"
+$ label    <chr> "ESA Caseload"
+$ location <chr> "http://stat-xplore.dwp.gov.uk/webapi/rest/v1/schema/str:database:ESA_Caseload"
+$ type     <chr> "DATABASE"
 ```
 
 Get a `tibble` of all variables on all databases in the ESA folder:
 
-```{r schema-c}
+```
 c <- dwp_schema("str:database:ESA_Caseload")
 
 glimpse(c)
-```
 
+Observations: 15
+Variables: 4
+$ id       <chr> "str:count:ESA_Caseload:V_F_ESA", "str:measure:ESA_Caseload:V_F_ESA:CAWKLYAMT", "str:group:...
+$ label    <chr> "Employment and Support Allowance Caseload", "Weekly Award Amount", "Admin-use only", "Quar...
+$ location <chr> "http://stat-xplore.dwp.gov.uk/webapi/rest/v1/schema/str:count:ESA_Caseload:V_F_ESA", "http...
+$ type     <chr> "COUNT", "MEASURE", "GROUP", "FIELD", "GROUP", "FIELD", "FIELD", "FIELD", "FIELD", "FIELD",...
+```
 
 Given their ID, you can use `dwp_scheme` to return the names of levels in group and field variables
 
-```{r schema-d}
+```
 d <- dwp_schema("str:field:ESA_Caseload:V_F_ESA:CTDURTN")
 
 glimpse(d)
+
+Observations: 1
+Variables: 4
+$ id       <chr> "str:valueset:ESA_Caseload:V_F_ESA:CTDURTN:C_ESA_DURATION"
+$ label    <chr> "Duration of current claim"
+$ location <chr> "http://stat-xplore.dwp.gov.uk/webapi/rest/v1/schema/str:valueset:ESA_Caseload:V_F_ESA:CTDU...
+$ type     <chr> "VALUESET"
 ```
 
 Returns a `tibble` of levels for the duration options for ESA caseloads
 
-```{r schema-e}
+```
 e <- dwp_schema("str:valueset:ESA_Caseload:V_F_ESA:CTDURTN:C_ESA_DURATION")
 
 glimpse(e)
+
+Observations: 7
+Variables: 4
+$ id       <chr> "str:value:ESA_Caseload:V_F_ESA:CTDURTN:C_ESA_DURATION:1", "str:value:ESA_Caseload:V_F_ESA:...
+$ label    <chr> "Up to 3 months", "3 months up to 6 months", "6 months up to 1 year", "1 year and up to 2 y...
+$ location <chr> "http://stat-xplore.dwp.gov.uk/webapi/rest/v1/schema/str:value:ESA_Caseload:V_F_ESA:CTDURTN...
+$ type     <chr> "VALUE", "VALUE", "VALUE", "VALUE", "VALUE", "VALUE", "VALUE"
 ```
 
 ## Get data
@@ -90,7 +125,7 @@ Due to the structure of the API, actual data is returned in a list with six leve
 
 The data structure can be difficult to work with in R; it is often unclear how to match together data labels, in the `fields` list level, with the actual data, in the `cubes` level. The example below shows a relatively simple process of assigning names to a query.
 
-```{r}
+```
 library(purrr)
 pip <- dwp_get_data(database = "str:database:PIP_Monthly",
                   measures = "str:count:PIP_Monthly:V_F_PIP_MONTHLY",
@@ -104,6 +139,14 @@ pip_names <- pip$fields$items
 names(pip2) <- pip_names[[2]]$labels
 
 pip2$date <- pip_names[[1]]$labels
+
+glimpse(pip2)
+Observations: 64
+Variables: 4
+$ Male                 <dbl> 12, 124, 304, 920, 1710, 2714, 4291, 6580, 8922, 12354, 15710, 20238, 25162, 30...
+$ Female               <dbl> 17, 118, 303, 940, 1746, 2756, 4579, 7280, 10087, 14275, 18384, 23902, 30006, 3...
+$ `Unknown or missing` <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0...
+$ date                 <list> ["201304 (Apr-13)", "201305 (May-13)", "201306 (Jun-13)", "201307 (Jul-13)", "...
 
 ```
 
