@@ -1,4 +1,4 @@
 library(testthat)
-library(dwp)
+library(dwpstat)
 
 test_check("dwp")

@@ -14,5 +14,5 @@ queries remaining, use \code{\link[=dwp_rate_limit]{dwp_rate_limit()}}.
 }
 \details{
 Full documentation of the API is available
-(here)\link{https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API.html}.
+\href{https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API.html}{here}.
 }
