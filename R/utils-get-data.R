@@ -7,7 +7,7 @@ dwp_get_data_util <- function(query, body_query) {
     encode = "json"
   )
 
-  #httr::status_code(api_get)
+  # httr::status_code(api_get)
 
   if (httr::http_error(api_get)) {
     stop(
@@ -25,5 +25,4 @@ dwp_get_data_util <- function(query, body_query) {
   }
 
   df <- fromJSON(httr::content(api_get, as = "text"), flatten = TRUE)
-
 }
