@@ -14,7 +14,7 @@ dwp_api_key(check_env = FALSE)
 Assign or reassign API key for the Stat-Xplore API.
 }
 \details{
-By default, \code{DWP} will look for the environment variable
+By default, \code{dwpstat} will look for the environment variable
 \code{DWP_API_KEY} when the package is loaded. If found, the API key will
 be stored in the session option \code{DWP.API.key}. If you would like to
 reload the API key or would like to manually enter one in, this function

@@ -9,9 +9,11 @@
 #' @return A list with available languages on the API
 #' @export
 #'
-# @examples
-#'
-#'
+#' @examples \dontrun{
+#' dwp_info()
+#' #> $`languages`
+#' #> list()
+#' }
 
 dwp_info <- function() {
   query <- paste0(dwp_baseurl, "info")
