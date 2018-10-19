@@ -8,6 +8,8 @@ MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1421684.svg)](https://doi.org/10.5281/zenodo.1421684)
 [![Travis build
 status](https://travis-ci.org/evanodell/dwpstat.svg?branch=master)](https://travis-ci.org/evanodell/dwpstat)
+[![AppVeyor build
+status](https://ci.appveyor.com/api/projects/status/github/evanodell/dwpstat?branch=master&svg=true)](https://ci.appveyor.com/project/evanodell/dwpstat)
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
 This package provides access to the ‘Stat-Xplore Open Data API’,

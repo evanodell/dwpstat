@@ -1,5 +1,4 @@
 
-
 #' Submit and receive table queries
 #'
 #' Table queries contain the actual data from the DWP database. Due to the
@@ -79,6 +78,7 @@
 #' @export
 #'
 #' @examples \dontrun{
+#' # A complex query
 #' x <- dwp_get_data(database = "str:database:ESA_Caseload",
 #'                   measures = "str:count:ESA_Caseload:V_F_ESA",
 #'                   column = c("str:field:ESA_Caseload:V_F_ESA:CCSEX",
@@ -86,7 +86,8 @@
 #'                   row = "str:field:ESA_Caseload:V_F_ESA:ICDGP",
 #'                   wafer = "str:field:ESA_Caseload:V_F_ESA:IB_MIG")
 #'
-#'
+#' # A more straightforward query returning the number of PIP recipients in
+#' # the most recent month, split by sex
 #' z <- dwp_get_data(database = "str:database:PIP_Monthly",
 #'                     measures = "str:count:PIP_Monthly:V_F_PIP_MONTHLY",
 #'                     column = "str:field:PIP_Monthly:V_F_PIP_MONTHLY:SEX")
