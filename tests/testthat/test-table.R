@@ -4,7 +4,6 @@ skip_on_appveyor()
 skip_on_cran()
 skip_on_travis()
 
-
 test_that("table query test", {
   z <- dwp_get_data(database = "str:database:PIP_Monthly",
                     measures = "str:count:PIP_Monthly:V_F_PIP_MONTHLY",

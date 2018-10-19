@@ -6,7 +6,8 @@ Authors@R: c(
     person(
       "Evan", "Odell", email = "evanodell91@gmail.com", 
       role = c("aut", "cre"),
-      comment = c(ORCID='0000-0003-1845-808X'))
+      comment = c(ORCID='0000-0003-1845-808X')),
+      person("Disability Rights UK", role = c("cph", "sht"))
     )
 Description: Provides access to the 'Stat-Xplore Open Data API'. The API 
     contains data on the UK benefits system, as available on the 'Stat-Xplore'
@@ -14,8 +15,8 @@ Description: Provides access to the 'Stat-Xplore Open Data API'. The API
     <https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API.html> 
     for full API documentation.
 License: MIT + file LICENSE
-URL: https://github.com/evanodell/dwpstat
-BugReports: https://github.com/evanodell/dwpstat/issues
+URL: https://github.com/dr-uk/dwpstat
+BugReports: https://github.com/dr-uk/dwpstat/issues
 Imports: 
     httr,
     jsonlite,
