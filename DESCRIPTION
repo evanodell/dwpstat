@@ -1,7 +1,7 @@
 Type: Package
 Package: dwpstat
 Title: Access 'Stat-Xplore' data on the UK benefits system
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: c(
     person(
       "Evan", "Odell", email = "evanodell91@gmail.com", 
@@ -20,12 +20,12 @@ BugReports: https://github.com/dr-uk/dwpstat/issues
 Imports: 
     httr,
     jsonlite,
-    tibble
+    tibble,
+    purrr
 Suggests: 
     testthat,
     knitr,
-    rmarkdown,
-    purrr
+    rmarkdown
 VignetteBuilder: knitr
 Encoding: UTF-8
 LazyData: true

@@ -10,7 +10,10 @@ dwp_schema(id = NULL)
 \item{id}{If \code{NULL}, returns all folders and databases available at the
 root level of the API. If the \code{id} of a folder, database, etc, returns
 all folders, databases, and variables at the level below.
-Defaults to \code{NULL}.}
+Defaults to \code{NULL}. The function will work with or without \code{"str:"} at
+the start of each ID string. \code{id="str:database:ESA_Caseload"} and
+\code{id="database:ESA_Caseload"} will return the same data, but a query like
+\code{id="r:database:ESA_Caseload"} will fail.}
 }
 \value{
 A tibble with the relevant
@@ -19,7 +22,8 @@ A tibble with the relevant
 Schema data is metadata on the datasets and folders available
 at the root level of Stat-Xplore. More details on the \code{schema} endpoint is
 available in the
-\href{https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API-Schema.html}{API documentation}
+\link{API documentation}
+(https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API-Schema.html)
 }
 \details{
 \code{dwp_schema} can be used iteratively to get folders and databases

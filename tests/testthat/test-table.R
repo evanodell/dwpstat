@@ -14,5 +14,4 @@ test_that("table query test", {
   expect_true(is.data.frame(z$fields))
   expect_true(is.matrix(z$cubes$`str:count:PIP_Monthly:V_F_PIP_MONTHLY`$values))
 
-
 })

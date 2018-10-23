@@ -6,15 +6,19 @@
 [![License:
 MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE.md)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1421684.svg)](https://doi.org/10.5281/zenodo.1421684)
+[![GitHub
+tag](https://img.shields.io/github/tag/dr-uk/dwpstat.svg)](https://github.com/dr-uk/dwpstat)
 [![Travis build
 status](https://travis-ci.org/dr-uk/dwpstat.svg?branch=master)](https://travis-ci.org/dr-uk/dwpstat)
 [![AppVeyor build
 status](https://ci.appveyor.com/api/projects/status/github/dr-uk/dwpstat?branch=master&svg=true)](https://ci.appveyor.com/project/dr-uk/dwpstat)
-[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+![lifecycle](https://img.shields.io/badge/lifecycle-experimental-red.svg)
+![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/dwpstat)
 
-This package provides access to the ‘Stat-Xplore Open Data API’,
-containing welfare statistics from the UK Department for Work and
-Pensions.
+This package provides access to the [‘Stat-Xplore Open Data
+API’](https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API.html),
+containing welfare statistics from the UK Government’s Department for
+Work and Pensions (DWP).
 
 The ‘Stat-Xplore Open Data API’ is a JSON REST API, with the same data
 as on the [Stat-Xplore](https://stat-xplore.dwp.gov.uk/) online service.
@@ -28,9 +32,31 @@ Full documentation of the API is available
 
 `dwpstat` returns metadata in
 [`tibble`](https://cran.r-project.org/package=tibble) format, and data
-in a list format. The list format is very messy, thanks to the way the
-API is built, and so `dwpstat` does not convert this data into a
+(with the `dwp_get_data()` command) in a list format. The list format is
+very messy, thanks to the way the API is built, and so `dwpstat` does
+not convert this data into a
 [`tibble`](https://cran.r-project.org/package=tibble) or similar.
+
+## Future Work
+
+This package remains in development. The specific functions are likely
+to remain stable, but the data returned by the `dwp_get_data()` function
+remains messy withs data labels stored in a seperate array from the
+actual data, making it difficult to work with, particularly for users
+unfamiliar with multi-dimensional arrays.
+
+The actual data queried by `dwp_get_data()` is returned in one
+multi-dimensional array, while the dimension names - row, columns,
+wafers, etc - are returned in another array. `dwpstat` does not match
+these two arrays together. I suspect there may be functionality like
+this in [`purrr`](https://cran.r-project.org/package=purrr) but I
+haven’t been successful in implementing a generic function to handle
+all the possible array dimensions that can be queried.
+
+Pull requests providing functionality to match the `field` array
+(containing the names of rows, columns, etc) with the `cubes` array
+(containing the actual data) are much appreciated, as in any advice on
+developing a solution to this problem.
 
 ## Installation
 

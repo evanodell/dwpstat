@@ -12,4 +12,13 @@ test_that("dwp_schema works", {
   expect_equal(names(a), c("id", "label", "location", "type"))
   expect_true("str:folder:fesawca" %in% a$id)
   expect_true("Benefit Cap" %in% a$label)
+
+  b1 <- dwp_schema(id="str:database:ESA_Caseload")
+  b2 <- dwp_schema(id="database:ESA_Caseload")
+
+  expect_equal(b2, b1)
+
+  expect_error(dwp_schema(id="r:database:ESA_Caseload"),
+               "Stat-Xplore API request failed with status 400")
+
 })

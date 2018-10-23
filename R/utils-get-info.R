@@ -1,4 +1,5 @@
 
+# Utility function to query the API for metadata
 dwp_get_info_util <- function(query) {
   api_get <- httr::GET(
     url = query,
