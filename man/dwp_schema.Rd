@@ -22,8 +22,7 @@ A tibble with the relevant
 Schema data is metadata on the datasets and folders available
 at the root level of Stat-Xplore. More details on the \code{schema} endpoint is
 available in the
-\link{API documentation}
-(https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API-Schema.html)
+\href{https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API-Schema.html}{API documentation}
 }
 \details{
 \code{dwp_schema} can be used iteratively to get folders and databases

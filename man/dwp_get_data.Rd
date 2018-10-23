@@ -78,8 +78,7 @@ preserved as a list.
 \details{
 Returns a list of 6 levels. The descriptions of what each level
 contains are adapted from the
-\link{API documentation}
-(https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API-Table.html).
+\href{https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API-Table.html}{API documentation}.
 }
 \examples{
 \dontrun{

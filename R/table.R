@@ -67,8 +67,7 @@
 #'
 #' @details Returns a list of 6 levels. The descriptions of what each level
 #' contains are adapted from the
-#' [API documentation]
-#' (https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API-Table.html).
+#' [API documentation](https://stat-xplore.dwp.gov.uk/webapi/online-help/Open-Data-API-Table.html).
 #'
 #' @export
 #'
