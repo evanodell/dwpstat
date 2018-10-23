@@ -97,7 +97,7 @@ Get citation information for `dwpstat` in R with `citation(package =
 
 Odell E (2018). *dwpstat: Access ‘Stat-Xplore’ data on the UK benefits
 system*. doi: 10.5281/zenodo.1421684 (URL:
-<http://doi.org/10.5281/zenodo.1421684>), R package version 0.0.0.9000,
+<http://doi.org/10.5281/zenodo.1421684>), R package version 0.1.0,
 \<URL: <https://github.com/dr-uk/dwpstats>\>.
 
 A BibTeX entry for LaTeX users is
@@ -107,7 +107,7 @@ A BibTeX entry for LaTeX users is
     title = {{dwpstat}: Access 'Stat-Xplore' data on the UK benefits system},
     author = {Evan Odell},
     year = {2018},
-    note = {R package version 0.0.0.9000},
+    note = {R package version 0.1.0,
     doi = {10.5281/zenodo.1421684},
     url = {https://github.com/dr-uk/dwpstats},
   }

@@ -7,4 +7,4 @@ bibentry(bibtype = "Manual",
          year = 2018,
          note = note,
          doi = "10.5281/zenodo.1421684",
-         url = "https://github.com/evanodell/dwpstats")
+         url = "https://github.com/dr-uk/dwpstats")
