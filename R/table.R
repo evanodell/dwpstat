@@ -83,8 +83,8 @@
 #' # A more straightforward query returning the number of PIP recipients in
 #' # the most recent month, split by sex
 #' z <- dwp_get_data(database = "str:database:PIP_Monthly",
-#'                     measures = "str:count:PIP_Monthly:V_F_PIP_MONTHLY",
-#'                     column = "str:field:PIP_Monthly:V_F_PIP_MONTHLY:SEX")
+#'                   measures = "str:count:PIP_Monthly:V_F_PIP_MONTHLY",
+#'                   column = "str:field:PIP_Monthly:V_F_PIP_MONTHLY:SEX")
 #' }
 
 dwp_get_data <- function(database, measures, column,
@@ -100,8 +100,8 @@ dwp_get_data <- function(database, measures, column,
   }
 
   dimensions <- list( # List of dimensions because doing this below doesn't work
-    row,
     column,
+    row,
     wafer
   )
 

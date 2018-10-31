@@ -10,7 +10,7 @@ dwp_info()
 A list with available languages on the API
 }
 \description{
-As of 2018-08-20, \code{dwp_info} only returns the languages available on the
+As of 2018-10-31, \code{dwp_info} only returns the languages available on the
 server, and the only available language is English. This function does
 not accept any parameters.
 }

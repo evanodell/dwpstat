@@ -9,13 +9,15 @@
 #' @details `dwp_schema` can be used iteratively to get folders and databases
 #' at each level.
 #'
-#' @param id If `NULL`, returns all folders and databases available at the
-#' root level of the API. If the `id` of a folder, database, etc, returns
-#' all folders, databases, and variables at the level below.
-#' Defaults to `NULL`. The function will work with or without `"str:"` at
+#' @details The function will work with or without `"str:"` at
 #' the start of each ID string. `id="str:database:ESA_Caseload"` and
 #' `id="database:ESA_Caseload"` will return the same data, but a query like
 #' `id="r:database:ESA_Caseload"` will fail.
+#'
+#' @param id If `NULL`, returns all folders and databases available at the
+#' root level of the API. If the `id` of a folder, database, etc, returns
+#' all folders, databases, and variables at the level below.
+#' `id` is case sensitive. Defaults to `NULL`.
 #'
 #' @return A tibble with the relevant
 #' @export
@@ -42,6 +44,7 @@ dwp_schema <- function(id = NULL) {
   if (is.null(id)) {
     id_query <- id
   } else {
+    id <- trimws(id)
     if (substr(id, 1, 4) != "str:") {
       id_query <- paste0("/str:", id)
     } else {

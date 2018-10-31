@@ -10,10 +10,7 @@ dwp_schema(id = NULL)
 \item{id}{If \code{NULL}, returns all folders and databases available at the
 root level of the API. If the \code{id} of a folder, database, etc, returns
 all folders, databases, and variables at the level below.
-Defaults to \code{NULL}. The function will work with or without \code{"str:"} at
-the start of each ID string. \code{id="str:database:ESA_Caseload"} and
-\code{id="database:ESA_Caseload"} will return the same data, but a query like
-\code{id="r:database:ESA_Caseload"} will fail.}
+\code{id} is case sensitive. Defaults to \code{NULL}.}
 }
 \value{
 A tibble with the relevant
@@ -27,6 +24,11 @@ available in the
 \details{
 \code{dwp_schema} can be used iteratively to get folders and databases
 at each level.
+
+The function will work with or without \code{"str:"} at
+the start of each ID string. \code{id="str:database:ESA_Caseload"} and
+\code{id="database:ESA_Caseload"} will return the same data, but a query like
+\code{id="r:database:ESA_Caseload"} will fail.
 }
 \examples{
 \dontrun{

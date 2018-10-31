@@ -2,7 +2,7 @@
 
 #' Information on the Stat-Xplore API
 #'
-#' As of 2018-08-20, `dwp_info` only returns the languages available on the
+#' As of 2018-10-31, `dwp_info` only returns the languages available on the
 #' server, and the only available language is English. This function does
 #' not accept any parameters.
 #'
